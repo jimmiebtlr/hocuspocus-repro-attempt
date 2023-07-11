@@ -3,13 +3,13 @@ import { Database } from '@hocuspocus/extension-database';
 
 const db = {};
  
-
 const createServer = () => {
   return Server.configure({
     port: 1234,
 
     debounce: 1000,
     maxDebounce: 5000,
+    timeout: 3000,
 
     extensions: [new Database({
       store: async ({ documentName, state }) => {
