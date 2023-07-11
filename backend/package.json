@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node --loader ts-node/esm ./index.ts"
+  },
+  "dependencies": {
+    "@hocuspocus/extension-database": "=2.0.6",
+    "@hocuspocus/extension-logger": "=2.0.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "yjs": "^13.6.6"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
+
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true, //for angular to be able to use metadata we specify in our components.
+        "experimentalDecorators": true, //angular needs decorators like @Component, @Injectable, etc.
+        "removeComments": false,
+        "noImplicitAny": false,
+        "lib": [
+            "es2016",
+            "dom",
+            "es5"
+        ]
+  }
+}
