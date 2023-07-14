@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef, useMemo } from 'react';
+import React, {useMemo} from 'react';
 import * as Y from 'yjs';
 import '@hocuspocus/common';
-import {
-  HocuspocusProvider,
-} from '@hocuspocus/provider';
-import { EditorContent, useEditor, AnyExtension } from '@tiptap/react';
+import {HocuspocusProvider, WebSocketStatus,} from '@hocuspocus/provider';
+import {EditorContent, useEditor} from '@tiptap/react';
 
 import StarterKit from '@tiptap/starter-kit';
 import Collaboration from '@tiptap/extension-collaboration';
@@ -19,13 +17,20 @@ import Link from 'next/link';
 
 const TextEditor: React.FC<{name: string}> = ({ name }) => {
   const ydoc = useMemo(() => new Y.Doc(),[]);
-  const provider = useMemo(() => new HocuspocusProvider({
-    name,
-    websocketProvider,
-    document: ydoc,
+  const provider = useMemo(() => {
 
-    token: '1234', // getToken,
-  }),[name,ydoc]);
+    if( websocketProvider.status === WebSocketStatus.Disconnected ) {
+      websocketProvider.connect()
+    }
+
+    return new HocuspocusProvider({
+      name,
+      websocketProvider,
+      document: ydoc,
+
+      token: '1234', // getToken,
+    })
+  },[name,ydoc]);
 
   const editor = useEditor({
     extensions: [
@@ -35,7 +40,7 @@ const TextEditor: React.FC<{name: string}> = ({ name }) => {
       })
     ],
   });
-  
+
 //   if (websocketProvider.status==='disconnected') {
 //     websocketProvider.connect();
 //   }
